@@ -18,7 +18,7 @@ ui <- fluidPage(
         submitButton("Submit")
         ),
       
-      # Show a plot of the generated distribution
+      # Show a text
       mainPanel(
         verbatimTextOutput("date")
       )
