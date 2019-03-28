@@ -1,17 +1,9 @@
-#
-# This is a Shiny web application. You can run the application by clicking
-# the 'Run App' button above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
 
 library(shiny)
 
 source("./global.R")
 
-# Define UI for application that draws a histogram
+
 ui <- fluidPage(
    
    # Application title
@@ -33,12 +25,11 @@ ui <- fluidPage(
    )
 )
 
-# Define server logic required to draw a histogram
+# Define server logic 
 server <- function(input, output) {
    
    output$date <- renderText({
      
-     #paste("Input text is:", input$Input_date)
      #Date to be converted into AD ------
      input.date <- input$Input_date
      pdate <- BS_to_AD(input.date)
