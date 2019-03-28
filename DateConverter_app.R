@@ -9,7 +9,7 @@ ui <- fluidPage(
    # Application title
    titlePanel(h1("Convert BS to AD", align = "center", style = "color:Red")),
    
-   # Sidebar with a slider input for number of bins 
+   # Sidebar with a dateInput and submitButton
    sidebarLayout(
       sidebarPanel(
         dateInput("Input_date",
