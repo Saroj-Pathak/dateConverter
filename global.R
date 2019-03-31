@@ -60,3 +60,44 @@ BS_to_AD <- function(Date_to_be_Converted) {
   
   return(Converted_date)
 }
+
+# Function to Convert AD to BS-----------
+
+AD_to_BS <- function(Date_to_be_Converted) {
+  # prepare dataframe Xnepali_data to work through 
+  Xnepali_date <- Nnepali_date
+  
+  #Order Xnepali data frame in ascending order according to the year 
+  Xnepali_date <-  Xnepali_date[order(Xnepali_date$Year),]
+  Xnepali_date$CF <- cumsum(Xnepali_date$NoofDays)
+  
+  
+  # Convert input date to DATE data type 
+  ADdate <- as.Date(Date_to_be_Converted, "%Y/%m/%d" )
+  
+  #Calculate no. of days from the base year
+  day_from_AD <- as.Date(ADdate) - base_year_AD
+  
+  closest_Cf <- min(Xnepali_date[Xnepali_date$CF > day_from_AD, "CF"])
+  closest_date <- Xnepali_date[Xnepali_date$CF == closest_Cf, "NoofDays"]
+  
+  BS_Month <- Xnepali_date[Xnepali_date$CF == closest_Cf, "Month"]
+  BS_Year <- Xnepali_date[Xnepali_date$CF == closest_Cf, "Year"]
+  
+  day_to_substracted <- closest_Cf - day_from_AD
+  exact_day <- (closest_date - day_to_substracted) + 1
+  
+  
+  converted_BS <- paste(BS_Year, BS_Month, exact_day, sep = "-")
+  
+  converted_BS <- as.Date(converted_BS)
+  
+  return(converted_BS)
+}
+
+
+
+
+
+
+
